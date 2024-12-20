@@ -1,4 +1,10 @@
 body {
+	background-image: url('http://grob-hroniki.org/img/other/original/1989_rpe/rpe_01.jpg');
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				background-position: center;
+				background-size: cover;
+				font-size: 16px;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -11,3 +17,76 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media (min-width: 1174px) {
+  .container {
+    font-size: 16px;
+    padding: 20px;
+  }
+}
+
+@media (min-width: 862px) and (max-width: 1173px) {
+  .container {
+    font-size: 14px;
+    padding: 15px;
+  }
+}
+
+@media (max-width: 861px) {
+  .container {
+    font-size: 12px;
+    padding: 10px;
+  }
+}
+			html, body {
+				height: 100%;
+				width: 100%;
+			}
+#root {
+	height: 100%;
+	width: 100%;
+}
+.table {
+				width: 100%;
+				border: 1%;
+				height: 100%;
+				background: rgba(255,255,255,0.5);
+			}
+			.inp {
+				background-color: #C0C0C088;
+			}
+			.td {
+				padding: 1%;
+			}
+			.expandable {
+				width: auto;
+			}
+			#btn {
+				width: 75%;
+				height: 200px;
+				display: block;
+				margin: 0 auto;
+				position: relative;
+				top: 0;
+			}
+			.top {
+				position: relative;
+				top: 0;
+			}
+			.center {
+				display:block;
+				margin: 0 auto;
+				text-align: center;
+			}
+			#prevData {
+				height: 60%;
+			}
+			.prevDataText {
+				font-size: 10px;
+			}
+			.header {
+				text-align: center;
+			}
+			.center {
+				display: flex;
+			}
