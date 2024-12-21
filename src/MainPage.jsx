@@ -10,7 +10,12 @@ import Input from 'react-toolbox/lib/input';
 import Button from 'react-toolbox/lib/button';
 import { useDispatch, useSelector } from 'react-redux';
 
-const MainPage = () => {		
+const MainPage = (props) => {	
+	let token = localStorage.getItem("token");
+	if (token == "") {
+		alert("Authorization error! Try again!");
+		props.history.push({pathname: '/'});
+	}
 	const graph = useRef(null);
 	const [context, setContext] = useState(null);
 	let margin = 15;
@@ -35,8 +40,9 @@ const MainPage = () => {
 	    context.fill();
 	}
 	useEffect(() => {
-		const getData = async () => { const resp = axios.get(getTableUrl, {params: {login}}, {headers: {
-			                	                'content-type': 'application/json'
+		const getData = async () => { const resp = axios.get(getTableUrl, {params: {login}, headers: {
+			                	                'content-type': 'application/json',
+								'Auth': token
 							}}).then((resp) => {
 				                                console.log(resp.data);
 								setResTable(resp.data);	
@@ -162,7 +168,8 @@ const MainPage = () => {
 				const y = (Math.round((ySize/2-clickY)*parseFloat(rRef.current)*3000000/ySize)/1000000.0);
 				console.log(x, y, rRef.current);
 				const res = axios.post(checkUrl, { x, y, r:rRef.current, login }, {headers: {
-					                                'content-type': 'application/json'
+					                                'content-type': 'application/json',
+									'Auth': token
 								}}).then((resp) => {
 					                                console.log(resp.data);
 									setResTable(prevTable => [...prevTable, resp.data]);
@@ -279,7 +286,8 @@ const MainPage = () => {
 									return;
 								}
 								const res = axios.post(checkUrl, { x, y, r, login }, {headers: {
-					                                'content-type': 'application/json'
+					                                'content-type': 'application/json',
+									'Auth': token
 								}}).then((resp) => {
 					                                console.log(resp.data);
 									setResTable(prevTable => [...prevTable, resp.data]);
@@ -413,7 +421,8 @@ const MainPage = () => {
 									return;
 								}
 								const res = axios.post(checkUrl, { x, y, r, login }, {headers: {
-					                                'content-type': 'application/json'
+					                                'content-type': 'application/json',
+									'Auth': token
 								}}).then((resp) => {
 					                                console.log(resp.data);
 									setResTable(prevTable => [...prevTable, resp.data]);
@@ -546,7 +555,8 @@ const MainPage = () => {
 									return;
 								}
 								const res = axios.post(checkUrl, { x, y, r, login }, {headers: {
-					                                'content-type': 'application/json'
+					                                'content-type': 'application/json',
+									'Auth': token
 								}}).then((resp) => {
 					                                console.log(resp.data);
 									setResTable(prevTable => [...prevTable, resp.data]);

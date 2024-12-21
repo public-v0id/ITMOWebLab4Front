@@ -17,6 +17,7 @@ const StartPage = (props) => {
         const [password, setPassword] = useState('');
         const signinUrl = "/ITMOWebLab4-1/api/index/signIn";
         const registerUrl = "/ITMOWebLab4-1/api/index/register";
+	localStorage.setItem("token", "");
 	const handleLoginChange = (val) => {
 		dispatch(setLogin(val));
 	};
@@ -55,17 +56,13 @@ const StartPage = (props) => {
 		<div style={{flexDirection: 'row'}}>
 		<Button onClick={(e) => {
                         e.preventDefault();
-                        const res = axios.get(signinUrl, {params: { login, password }}, {headers: {
+                        const res = axios.post(signinUrl, { login, password }, {headers: {
                                 'content-type': 'application/json'
                         }}).then((resp) => {
                                 console.log(resp.data);
-                                if (resp.data === "Signed in successfully!") {
+				localStorage.setItem("token", resp.data);
                                         props.history.push({
 						pathname: '/Main'});
-                                }
-				else {
-					alert(resp.data);
-				}
                         }).catch(error => {
 				if (error.response) {
                                 	alert(error.response.data);
